@@ -1,0 +1,114 @@
+.forum {
+    &.subject {
+        & .title {
+            & h1 {
+                display:flex;
+                align-items: center;
+            }
+        }
+
+        & .pan {
+            background:#1a1a1d;
+            padding:5px;
+            & img {
+                border: 1px solid  #121621;
+            }
+           
+        }
+
+        & .border-left {
+            border-left: 1px #21232a solid !important;
+        }
+
+        & .border {
+            border: 1px solid  #121621 !important;
+        }
+
+        & .btn-subject {
+            width:35px;
+            height:35px;
+            margin:0 1px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2), 0 3px 8px rgba(0,0,0,0.1);
+            z-index:0;
+            
+            &.btn-primary .back{
+                left: -50%;
+                top: -50%;
+                background: #27ae60;
+            }
+            &.btn-info .back{
+                right: -50%;
+                top: -50%;
+                background: #c0392b;
+            }
+            &.btn-success .back{
+                left: -50%;
+                bottom: -50%;
+                background: #34495e;
+            }
+            &.btn-danger .back{
+                right: -50;
+                bottom: -50%;
+                background: #2980b9;
+            }
+        
+            &:hover .back{
+                width: calc(2 * 35px);
+                height: calc(2 * 35px);
+            }
+        }
+
+        & .status > div {
+            height:35px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        & .type-subject {
+            width:25px;
+            height:25px;
+            & i {
+                color: #FFF;
+                font-size:13px;
+            }
+        }
+        & .description {
+            margin-left:5px;
+            display:block;
+        }
+
+        & .avatar-min {
+            width:35px;
+            height:35px;
+        }
+
+        & .responsive-block {
+            font-size:12px;
+        }
+
+        & .hasOnline {
+            width:12px;
+            height:12px;
+            border-radius: 100%;
+            top:1px;
+            right:1px;
+        }
+
+        & .signature {
+            border: 1px solid #21232a !important;
+            .content-signature {
+                color:white !important;
+                all: initial;
+                * {
+                    padding: unset;
+                    margin: unset;
+                }
+            }
+        }
+    }
+}
+
+.ck-editor__editable_inline  {
+    min-height: 500px !important;
+}

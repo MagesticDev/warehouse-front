@@ -1,0 +1,58 @@
+<div class="modal fade" id="Login" role="dialog" aria-labelledby="Connexion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Connexion">
+                    <i class="fas fa-user"></i> {{ 'account.login.title' | translate }}
+                </h5>
+                <a href="#" #closebutton data-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="signIn(loginForm)" method="POST" autocomplete="off">
+                <div class="modal-body">
+                    <app-alert *ngIf="invalid" [type]="'error'" [message]="'account.login.errorLogin' | translate"></app-alert>
+                    <div class="form-group">
+                        <label for="loginModals" class="mb-3"><i class="fas fa-user"></i> {{ 'account.login.pseudo' | translate }}</label>
+                        <input formControlName="login" type="text" class="form-control" id="loginModals" name="login" placeholder="{{ 'account.login.placeholder.pseudo' | translate }}">
+                        <ng-container *ngIf="f.login.touched && f.login.invalid">
+                            <app-alert *ngIf="f.login.errors.required" [type]="'error'" [message]="'account.login.pseudoRequire' | translate" ></app-alert>
+                            <app-alert *ngIf="f.login.errors.minlength" [type]="'warning'" [message]="'account.login.pseudoMin' | translate" ></app-alert>
+                        </ng-container>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordModals" class="mb-3"><i class="fas fa-key"></i> {{ 'account.login.password' | translate }}</label>
+                        <input formControlName="password" type="password" class="form-control" name="password" id="passwordModals" placeholder="{{ 'account.login.placeholder.password' | translate }}">
+                        <ng-container *ngIf="f.password.touched && f.password.invalid">
+                            <app-alert *ngIf="f.password.errors.required" [type]="'error'" [message]="'account.login.passwordRequire' | translate"></app-alert>
+                            <app-alert *ngIf="f.password.errors.minlength" [type]="'warning'" [message]="'account.login.passwordMin' | translate" ></app-alert>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-danger m-0" [disabled]="!loginForm.valid">
+                            <span class="d-flex align-items-center">
+                                <i class="fas fa-sign-in-alt mr-2"></i>
+                                {{ 'account.login.connection' | translate }}
+                            </span>
+                            <div *ngIf="loginForm.valid" class="back"></div>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" data-dismiss="modal" aria-label="Close" routerLink="/Register">
+                        <span class="d-flex align-items-center">
+                            <i class="fas fa-arrow-square-right mr-2"></i>
+                            {{ 'account.registerForm.register' | translate }}
+                        </span>
+                        <div class="back"></div>
+                    </a>
+                    <a class="btn btn-info mr-0" data-dismiss="modal" aria-label="Close" routerLink="/Recovery">
+                        <span class="d-flex align-items-center">
+                            <i class="fas fa-arrow-square-right mr-2"></i>
+                            {{ 'account.recovery' | translate }}
+                        </span>
+                        <div class="back"></div>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>

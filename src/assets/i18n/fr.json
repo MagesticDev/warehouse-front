@@ -1,0 +1,109 @@
+{
+    "global": {
+        "title" : "Les bouquineurs",
+        "title_initial": "LB",
+        "menu" : {
+            "home" : "Accueil",
+            "contact" : "Contact",
+            "forum" : "Forum"
+        },
+        "error" : {
+            "404" : {
+                "text" : "Il semble que la page que vous recherchiez ne soit plus ici.",
+                "button" : "Retour à la page d'accueil"
+            }
+        }   
+    },
+    "account" : {
+        "recovery" : "Mot de passe oublié",
+
+        "member" : { 
+            "account" : "Mon compte",
+            "messaging" : "Mes messages",
+            "support" : "Support / Ticket",
+            "disconnect" : "Déconnexion"
+        },
+        
+        "login":{
+            "connection": "Connexion",
+            "title": "Connectez-vous sur le site Les bouquineurs",
+            "errorLogin": "Vos informations d'identification semblent incorrectes!",
+            "pseudo": "Pseudo",
+            "pseudoRequire": "Pseudo requis.",
+            "pseudoMin": "Le pseudo doit contenir au moins 3 caractères.",
+            "password": "Mot de passe",
+            "passwordRequire": "Mot de passe requis",
+            "passwordMin": "Le mot de passe doit comporter au moins 5 caractères.",
+            "placeholder" : {
+                "pseudo": "Nom du compte*",
+                "password": "Mot de passe*"
+            }
+        },
+        "registerForm" : {
+            "error" : "Erreur lors de l'envoi du formulaire !",
+            "title": "Inscription sur le site Les bouquineurs",
+            "information" : {
+                "title" : "Vos informations",
+                "text" : "Merci de remplir soigneusement tous les champs de ce formulaire."
+            },
+            "register" : "Inscription",
+            "inputPseudo" : {
+                "label" : "Pseudo",
+                "placeholder" : "Saisissez un pseudo*"
+            },
+            "inputEmail" : {
+                "label" : "Adresse email",
+                "placeholder" : "Saisissez votre email*"
+            },
+            "inputConfirmEmail" : {
+                "label" : "Confirmer l'adresse email",
+                "placeholder" : "Ressaisissez votre email*"
+            },
+            "inputPassword" : {
+                "label" :  "Mot de passe",
+                "placeholder" : "Saisissez votre mot de passe*"
+            },
+            "inputConfirmPassword" : {
+                "label" : "Confirmer votre mot de passe",
+                "placeholder" : "Ressaisissez votre mot de passe*"
+            },
+            "selectCountry" : {
+                "label" : "Sélectionnez votre Pays*"
+            },
+            "selectQuestion" : {
+                "label" : "Sélectionnez une question*"
+            },
+           
+            "inputResponse" : {
+                "label" : "Réponse",
+                "placeholder" : "Saisissez votre réponse*"
+            },
+            "image" : {
+                "title" : "Image de vérification",
+                "reload" : "Recharger l'image de vérification...",
+                "placeholder" : "Recopier les entités*"
+
+            },
+            "communityRule": "J'ai lu et j'accepte les règles de la communauté.",
+            "rgpd": "J'accepte également le RGPD en vigueur sur le site.",
+            "validate" : "S'enregistrer",
+
+            "right" : {
+                "title" : "Informations complémentaires",
+                "information" : {
+                    "title" : "Traitement des informations via ce formulaire.",
+                    "text" : "Les informations recueillies font l’objet d’un traitement informatique destiné à fournir et sécuriser l'accès au site internet. Conformément à la loi \"informatique et libertés\" du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en envoyant un ticket via la section contact de notre site internet. Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant."
+                },
+                "menu" : {
+                    "title" : "Liens utiles",
+                    "rules" : "Règlements de la communautés",
+                    "conditions" : "Conditions d'utilisation",
+                    "politics" : "Politique d'accès",
+                    "payments" : "Paiements & Sécurité",
+                    "faq" : "F.A.Q"
+                }
+            }
+
+        } 
+    }
+}

@@ -1,0 +1,17 @@
+.appAvatar { 
+    & .input-group-prepend {
+        height: 34px;
+        & .input-group-text {
+            border-radius: unset;
+        }
+    }
+    & .custom-file-label, & .custom-file-label::after {
+        border-radius: unset;   
+    }
+    & .custom-file-label::after { 
+        content: "\1f4d6";
+    }
+    & .custom-file-label { 
+        margin-right: -1px; //correction d'un bug de pixel
+    }
+}

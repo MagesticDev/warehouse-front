@@ -1,0 +1,57 @@
+<div class="tchat" id="openModals">
+    <div *ngIf="getTchat" class="modalsOpen p-1">
+        <div #scroll class="viewModals tchatroom" (scroll)="onScroll($event)">
+            <span class="list-group-item mb-1" *ngFor="let tchatMessage of getTchatMessage">
+                <div class="d-flex">
+                    <span>
+                        <img  title="Membre de Magestic" alt="Message de {{ tchatMessage.pseudo }} le {{ tchatMessage.date }}" class="avatar" src="{{ tchatMessage.avatar }}" />
+                    </span>
+                    <div class="ml-2">
+                        <span>
+                            <strong>{{ tchatMessage.pseudo }}</strong> 
+                            <small class="ml-1">{{ tchatMessage.date }}</small>
+                        </span>  
+                        <p class="mt-1">
+                        {{ tchatMessage.message }}
+                        </p>
+                    </div>
+                </div>
+            </span>
+            <span  #backMessage class="list-group-item mb-1" *ngFor="let message of backMessage">
+                <div class="d-flex" *ngIf="message">
+                    <span><img class="avatar" src="{{ message?.avatar }}" /></span>
+                    <div class="ml-2">
+                        <span>
+                            <strong>{{ message?.pseudo }}</strong> 
+                            <small class="ml-1"> {{ message?.date | date:'dd/MM/yyyy à HH:mm':'fr-FR' }}</small>
+                        </span>
+                        <p class="mt-1">{{ message?.message }}</p> 
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div class="form-group mt-1 mb-1" *ngIf="LoggedInOk">
+            <input #inputMessage type="text" (keyup.enter)="send($event)" id='message' value="" name='message' class="form-control"  placeholder="Ecrire votre message*" required>
+        </div>
+    </div>
+    <div *ngIf="getFriends"  class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 modalsOpen">
+        <div class="viewModals">
+            <h6><i class="fas fa-user-friends"></i> Liste de vos amis <strong class="text-success">En ligne</strong></h6>
+            <!-- BEGIN LISTE_AMIS -->
+            <span class="list-group-item">
+                <!-- {LISTE_AMIS.AMIS} -->
+            </span>
+            <!-- END LISTE_AMIS -->
+        </div>
+    </div>
+    <div class="col-12 p-2 d-flex border-top">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border-right d-flex justify-content-center align-items-center">
+              <a class="openModals d-flex align-items-center" (click)="openModals('tchat');" href="#"><i class="fas fa-comments-alt mr-1"></i> Tchat</a>
+          </div>
+          <!-- BEGIN LISTE_AMIS -->
+          <div *ngIf="LoggedInOk" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 d-flex justify-content-center align-items-center">
+              <a class="openModals d-flex align-items-center" href="#" (click)="openModals('friends'); false"><i class="fas fa-user-friends mr-1"></i> Amis <!--({LISTE_AMIS.NBR_AMIS}) --></a>
+          </div>
+      </div>
+    <!-- END LISTE_AMIS -->
+</div>

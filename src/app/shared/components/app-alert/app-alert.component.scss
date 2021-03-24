@@ -1,0 +1,77 @@
+.alert {
+    background: #fff;
+    border: 1px solid #3572b0;
+    color: #333;
+    line-height: 15px;
+    margin: 5px 0 5px 0;
+    overflow-wrap: break-word;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    display:flex;
+    height:100%;
+    padding: unset;
+    
+    position: relative;
+    word-wrap: break-word;
+    word-break: break-word;
+    & .text {
+        padding: 10px 0 10px 15px;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        width:100%;
+        & .close {
+            font-size: 14px;
+            cursor: pointer;
+            height:100%;
+            display: flex;
+            align-items: center;
+            margin-top: 1px;
+            position:unset;
+            padding: 0 1.25rem 0 0 !important;
+        }
+    }
+    & .icon {
+        display:block;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width:35px;
+        height:auto;
+        color:#FFFFFF;
+        margin-top: -1px; /* fix bug css */
+        margin-bottom: -1px; /* fix bug css */
+        margin-left: -1px;
+    }
+
+    &.error {
+        border-color: #e74c3c;
+        color: #333;
+        & .icon {
+            background-color: #e74c3c;
+        }
+    }
+
+    &.success {
+        border-color: #16a085;
+        color: #333;
+        & .icon {
+            background-color: #16a085;
+        }
+    }
+
+    &.warning {
+        border-color: #EDC211;
+        color: #333;
+        & .icon {
+            background-color: #EDC211;
+        }
+    }
+
+    &.info {
+        border-color: #2980b9;
+        color: #333;
+        & .icon {
+            background-color: #2980b9;
+        }
+    }
+}

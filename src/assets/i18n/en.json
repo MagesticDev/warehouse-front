@@ -1,0 +1,106 @@
+{
+    "global": {
+        "title" : "Booksellers",
+        "title_initial": "BS",
+        "menu" : {
+            "home" : "Home",
+            "contact" : "Contact",
+            "forum" : "Forum"
+        },
+        "error" : {
+            "404" : {
+                "text" : "Looks like the page you were looking for is no longer here.",
+                "button" : "Back to the homepage"
+            }
+        }, 
+        "account" : {
+            "recovery" : "Forgot your password",
+            "member" : {
+                "account" : "My account",
+                "messaging" : "My messages",
+                "support" : "Support / Ticket",
+                "disconnect" : "Disconnect"
+            },
+            "login":{
+                "connection": "Connection",
+                "title": "Log in to Booksellers account",
+                "errorLogin": "Your credentials seem incorrect!",
+                "pseudo": "Pseudo",
+                "pseudoRequire": "Pseudo required.",
+                "pseudoMin": "The pseudo must contain at least 3 characters.",
+                "password": "Password",
+                "passwordRequire": "Password required.",
+                "passwordMin": "The password must be at least 5 characters long.",
+                "placeholder" : {
+                    "pseudo": "Account name*",
+                    "password": "Password*"
+                }
+            },
+            "registerForm" : {
+                "error" : "Error while sending the form!",
+                "title": "Register to Booksellers",
+                "information" : {
+                    "title" : "Your informations",
+                    "text" : "Please carefully fill in all fields of this form."
+                },
+                "register" : "Register",
+                "inputPseudo" : {
+                    "label" : "Login",
+                    "placeholder" : "Enter a nickname*"
+                },
+                "inputEmail" : {
+                    "label" : "E-mail adress",
+                    "placeholder" : "Enter your email*"
+                },
+                "inputConfirmEmail" : {
+                    "label" : "Confirm email address",
+                    "placeholder" : "Retype your email*"
+                },
+                "inputPassword" : {
+                    "label" :  "Password",
+                    "placeholder" : "Enter your password*"
+                },
+                "inputConfirmPassword" : {
+                    "label" : "Confirm your password",
+                    "placeholder" : "Retype your password*"
+                },
+                "selectCountry" : {
+                    "label" : "Choose your country*"
+                },
+                "selectQuestion" : {
+                    "label" : "Select a question*"
+                },
+               
+                "inputResponse" : {
+                    "label" : "Answer",
+                    "placeholder" : "Enter your answer*"
+                },
+                "image" : {
+                    "title" : "Verification image",
+                    "reload" : "Reload the verification image ...",
+                    "placeholder" : "Copy the entities*"
+    
+                },
+                "communityRule": "I have read and accept the rules of the community.",
+                "rgpd": "I also accept the GDPR in force on the site.",
+                "validate" : "Register",
+    
+                "right" : {
+                    "title" : "Further information",
+                    "information" : {
+                        "title" : "Processing of information via this form.",
+                        "text" : "The information collected is subject to computer processing intended to provide and secure access to the website. In accordance with the Data Protection Act of 6 January 1978 amended in 2004, you have the right to access and rectify information concerning you, which you can exercise by sending a ticket via the contact section of our website. You can also, for legitimate reasons, oppose the processing of data concerning you."
+                    },
+                    "menu" : {
+                        "title" : "Useful links",
+                        "rules" : "Community regulations",
+                        "conditions" : "Terms of use",
+                        "politics" : "Access policy",
+                        "payments" : "Payments & Security",
+                        "faq" : "F.A.Q"
+                    }
+                }
+            } 
+        }
+    }
+}

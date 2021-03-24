@@ -1,0 +1,23 @@
+<div *ngIf="getSlider" id="carouselCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li *ngFor="let slider of getSlider; let i = index" data-target="#carouselCaptions" attr.data-slide-to="{{i}}" class="{{ (i == 0) ? 'active' : '' }}"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div *ngFor="let slider of getSlider; let i = index" class="carousel-item {{ (i == 0) ? 'active' : '' }}">
+      <img class="d-block w-100 img-slide" data-src="" alt="" src="{{slider.url}}" data-holder-rendered="true">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{slider.title}}</h5>
+        <p>{{slider.description}}</p>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselCaptions" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselCaptions" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+

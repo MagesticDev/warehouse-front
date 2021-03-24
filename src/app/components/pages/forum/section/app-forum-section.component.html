@@ -1,0 +1,103 @@
+<app-loading [hasLoading]="hasLoading"></app-loading>
+<section class="forum">
+    <div class="title w-100 d-flex justify-content-between align-items-center">
+        <h1 class="w-100 m-0"><i class="fas fa-feather-alt"></i> {{section?.title}}</h1> 
+        <!-- BEGIN NOUVEAU -->
+        <div *ngIf="section?.hasConnected && (section?.right_write || section?.isAdmin)" href="URL/Nouveau" class="btn btn-success">
+            <span>Nouveau sujet </span><div class="back"></div>
+        </div>
+        <!-- END NOUVEAU -->
+    </div>
+    <hr class="w-100" />
+        <div class="w-100">
+            <h5 class="mt-4 mb-2 title">
+                <i class="far fa-arrow-alt-square-right"></i> 
+                Lire les sujets
+            </h5>
+            <p>{{section?.description}}</p>
+            <!-- BEGIN AUCUN_SUJET -->
+            <div *ngIf="!subjects" class="bg-custom border row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <p class="p-0 d-flex align-items-center p-3 m-0">
+                        Aucun sujet n'a été créé, vous pouvez en créer un à tout moment en cliquant sur le bouton &nbsp; <strong class="text-success">Nouveau sujet</strong> &nbsp; ci-dessus.
+                    </p>
+                </div>
+            </div>
+            <!-- END AUCUN_SUJET -->
+            <!-- BEGIN SUJETS -->
+            <ng-container *ngFor="let subject of subjects">
+                <a class="d-flex border w-100  position-relative link mt-1" [routerLink]="['/Forum', 'section-' + section?.url, subject?.id_forum, 'sujet-' + subject?.url, subject?.topic_id]" tabindex="-1">
+                    <!-- BEGIN IF_VIEW -->
+                    <span *ngIf="subject?.isView" class="bg-success view-sujet position-absolute"></span>
+                    <!-- END IF_VIEW -->
+                    <!-- BEGIN IF_PAS_VIEW -->
+                    <span *ngIf="!subject?.isView" class="bg-danger view-sujet position-absolute"></span>
+                    <!-- END IF_PAS_VIEW -->
+                    <div class="col-xl-1 col-lg-1 col-md-1 d-none d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-center">
+                        <!-- BEGIN ANNONCE -->
+                        <h2  *ngIf="subject?.announcement" class="text-white rounded-circle p-0 m-1 w-100 bg-primary">
+                            <i class="fas fa-megaphone"></i>
+                        </h2>
+                        <!-- END ANNONCE -->
+                        <!-- BEGIN POST_IT -->
+                        <h2 *ngIf="subject?.post_it" class="text-white rounded-circle p-0 m-1 w-100 bg-warning ">
+                            <i class="fal fa-file-alt"></i>
+                        </h2>
+                        <!-- END POST_IT -->
+                        <!-- BEGIN NORMAL -->
+                        <h2 *ngIf="subject?.normal" class="text-white rounded-circle p-0 m-1 w-100 bg-success">
+                            <i class="fas fa-comment"></i>
+                        </h2>
+                        <!-- END NORMAL -->
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-flex align-items-center">
+                        <div class="w-100">
+                            <h6 class="p-0 m-1">{{subject?.title}}</h6>
+                            <p class="p-0 m-1 text-light">{{subject?.description}}</p>
+                            <small class="p-0 m-1 d-flex justify-content-between w-100">
+                                <div>
+                                    Écrit par <span [innerHTML]="subject?.author"></span>
+                                </div>
+                                <!-- BEGIN PASTILLE -->
+                                <div>
+                                    <!-- BEGIN FERME -->
+                                    
+                                    <span *ngIf="subject?.closed == 1" class="text-danger border">
+                                        <i class="fas fa-square-full"></i>
+                                    </span>
+                                    <!-- END FERME -->
+                                    <!-- BEGIN REGLE -->
+                                    <span *ngIf="subject?.rule == 1" class="text-success border">
+                                        <i class="fas fa-square-full"></i>
+                                    </span>
+                                    <!-- END REGLE -->
+                                </div>
+                                <!-- END PASTILLLE -->
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 d-none d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-center">
+                        <p class="p-0 m-1">{{subject?.nbr_reads}} Lu</p>
+                        <p class="p-0 m-1">{{subject?.nbr_responses}} Post(s)</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 d-none d-md-flex d-lg-flex d-xl-flex  justify-content-center align-items-center text-avatar">
+                        <div>
+                            <img class="avatar border" src="{{subject?.avatar}}" /> 
+                        </div>
+                        <div class="pl-2" [innerHTML]="subject?.last_message">
+                            
+                        </div>
+                    </div>
+                </a>
+            </ng-container>
+            
+            <!-- END SUJETS -->
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="w-100 d-flex justify-content-end mb-2">
+                    PAGINATION
+                </div>
+            </div>
+
+   
+</section>

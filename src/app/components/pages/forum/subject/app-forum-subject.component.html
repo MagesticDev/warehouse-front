@@ -1,0 +1,245 @@
+<app-loading [hasLoading]="hasLoading"></app-loading>
+<section class="forum subject">
+    <div class="title w-100 d-flex justify-content-between align-items-center">
+        <h1 class="w-100 m-0">
+            <i class="fas fa-feather-alt"></i> 
+            {{subject?.title}}
+        </h1>
+        <!-- BEGIN REPONDRE -->
+        <div  (click)="scrollToElement(target)" *ngIf="subject?.hasConnected && subject?.closed != 1" class="btn btn-success">
+            <span>Répondre</span><div class="back"></div>
+        </div>
+        <!-- END REPONDRE -->
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+            <div class="mt-4 mb-4">
+                <h2 class="m-0 d-flex align-items-center">
+                    <!-- BEGIN ANNONCE -->
+                    <span *ngIf="subject?.announcement" class="rounded-circle bg-primary d-flex align-items-center justify-content-center type-subject">
+                        <i class="fas fa-megaphone"></i>
+                    </span>
+                    <!-- END ANNONCE -->
+                    <!-- BEGIN POST_IT -->
+                    <span *ngIf="subject?.post_it" class="rounded-circle bg-warning d-flex align-items-center justify-content-center type-subject">
+                        <i class="fal fa-file-alt"></i>
+                    </span>
+                    <!-- END POST_IT -->
+                    <!-- BEGIN NORMAL -->
+                    <span *ngIf="subject?.normal" class="rounded-circle bg-success d-flex align-items-center justify-content-center type-subject">
+                        <i class="fas fa-comment"></i>
+                    </span>
+                    <!-- END NORMAL -->
+                    <span class="description">
+                        {{subject?.description}}
+                    </span>
+                </h2>
+                <hr />
+                <!-- BEGIN PASTILLE -->
+                <div class="mt-1">
+                    <!-- BEGIN FERME -->
+                    <div *ngIf="subject?.closed == 1" class="d-block">
+                        <span class="text-danger bg-light">
+                            <i class="fas fa-square-full"></i> Ce sujet à été marqué comme fermer
+                        </span>
+                    </div>
+                    <!-- END FERME -->
+                    <!-- BEGIN REGLE -->
+                    <div *ngIf="subject?.rule == 1" class="d-block">
+                        <span  class="text-success bg-light">
+                            <i class="fas fa-square-full"></i> Ce sujet à été marqué comme résolu
+                        </span>
+                    </div>
+                    <!-- END REGLE -->
+                </div>
+                <!-- END PASTILLLE -->
+                <!-- BEGIN IF_PAS_CONNECTE -->
+                <h5 *ngIf="!subject?.hasConnected" class="mt-3 title">
+                    <i class="far fa-arrow-alt-square-right"></i> 
+                    Vous devez être connecté pour répondre à ce sujet.
+                </h5>
+                <!-- END IF_PAS_CONNECTE -->
+            </div>
+            <!-- BEGIN SUJET -->
+            <div class="bg-custom border mt-1" *ngFor="let response of responses; let index = index;" id="rSUJET.ID_REPONSE">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="row p-0">
+                        <div class="col-xl-2 col-lg-2 col-md-2 p-1 status d-none d-lg-block d-xl-block">
+                            <!-- BEGIN IF_ADMIN -->
+                            <div *ngIf="response?.isAdmin" class="bg-danger w-100 text-center">
+                                Administrateur
+                            </div>
+                            <!-- END IF_ADMIN -->
+                            <!-- BEGIN IF_MEMBER -->
+                            <div *ngIf="!response?.isAdmin" class="bg-success w-100 text-center">
+                                Membre
+                            </div>
+                            <!-- END IF_MEMBER -->
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12 p-0 d-flex justify-content-between align-items-start">
+                            <div class="d-flex w-100 p-1 d-lg-none d-xl-none">
+                                <div>
+                                    <img class="avatar-min mt-1" src="{{response.avatar}}" />
+                                </div>
+    
+                                <div class="ml-2 responsive-block">
+                                    <div class="d-flex align-items-center">
+                                        <span [innerHTML]="response.author"></span>
+                                        <div *ngIf="response?.online" title="En ligne" class="bg-success m-0 pt-0 hasOnline ml-1"></div>
+                                        <div *ngIf="!response?.online" title="Hors ligne" class="bg-danger m-0 pt-0 hasOnline ml-1"></div>
+                                    </div>
+                                    
+                                    <p class="m-0 pt-1">Messages : {{response.nbr_message}}</p>
+                                    <p class="m-0 pt-1">Posté le {{response.time}}</p>
+                                </div> 
+                            </div>
+                            <div class="w-100 d-flex align-items-center justify-content-end p-1">
+                                <!-- BEGIN EDITER -->
+                                    <div *ngIf="response?.author_text === subject?.login || subject?.isAdmin" title="Editer la réponse" [routerLink]="['/Forum', 'section-' + subject?.url, response?.id_forum, 'sujet-' + response?.url, subject?.topic_id,  'edit',  response?.id ]" class="btn btn-success btn-subject">
+                                        <span>
+                                            <i class="fal fa-edit"></i>
+                                        </span>
+                                        <div class="back"></div>
+                                    </div>
+                                <!-- END EDITER -->
+                                <!-- BEGIN ADMIN -->
+                                <!-- BEGIN IF_LOCKED -->
+                                <form *ngIf="response.first == 1 && subject?.closed != 1  && subject?.isAdmin" class="d-block" method="POST">
+                                    <input type="hidden" name="verrouiller" value="1" />
+                                    <div title="Vérouiller le sujet" class="btn btn-info btn-subject">               
+                                        <span>
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                        <div class="back"></div>
+                                    </div>
+                                </form>
+                                <!-- END IF_LOCKED -->
+                                <!-- BEGIN IF_UNLOCKED -->
+                                <form *ngIf="response.first == 1 && subject?.closed == 1 && subject?.isAdmin" class="d-block" action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" method="POST">
+                                    <input type="hidden" name="deverrouiller" value="1" />
+                                    <div class="btn btn-info btn-subject" title="Déverrouiller le sujet">
+                                        <span>
+                                            <i class="fas fa-unlock"></i>
+                                        </span>
+                                        <div class="back"></div>
+                                    </div>
+                                </form>
+                                <!-- END IF_UNLOCKED -->
+
+                                <!-- BEGIN IF_REGLER -->
+                                <form *ngIf="response.first == 1 && subject?.rule != 1 && subject?.isAdmin" class="d-block" action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" method="POST">
+                                    <input type="hidden" name="regler" value="1" />
+                                    <div class="btn btn-primary btn-subject" title="Marquer le sujet comme résolu">
+                                        <span>
+                                            <i class="fas fa-check-square"></i>
+                                        </span>
+                                        <div class="back"></div>
+                                    </div>
+                                </form>
+                                <!-- END IF_REGLER -->
+                                <!-- BEGIN IF_DEREGLER -->
+                                <form *ngIf="response.first == 1 && subject?.rule == 1 && subject?.isAdmin" class="d-block" action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" method="POST">
+                                    <input type="hidden" name="deregler" value="1" />
+                                    <div class="btn btn-primary btn-subject" title="Marquer le sujet comme non résolu">
+                                        <span>
+                                            <i class="fas fa-check-square"></i>
+                                        </span>
+                                        <div class="back"></div>
+                                    </div>
+                                </form>
+                                <!-- END IF_DEREGLER -->
+
+                                <form *ngIf="response.first == 1 && subject?.isAdmin" class="d-block" action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" method="POST">
+                                    <input type="hidden" name="deleteAll" value="ID_SUJET" />
+                                    <div class="btn btn-danger btn-subject"  title="Supprimer le sujet (réponses comprise)">
+                                        <span>
+                                            <i class="fas fa-eraser"></i>
+                                        </span>
+                                        <div class="back"></div>
+                                    </div>
+                                </form>
+                                <!-- END ADMIN -->
+                                <!-- BEGIN IF_NOT_FIRST_ADMIN -->
+                                <form *ngIf="index > 0 && subject?.isAdmin" class="d-block" action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" method="POST">
+                                    <input type="hidden" name="deleteReponse" value="SUJET.ID_REPONSE" />
+                                    <div class="btn btn-danger btn-subject" title="Supprimer la réponse">
+                                        <span>
+                                            <i class="fas fa-eraser"></i>
+                                        </span>
+                                        <div class="back"></div>
+                                    </div>
+                                </form>
+                                <!-- END IF_NOT_FIRST_ADMIN -->
+                                <!-- <small class="ml-2">{{response.date}}</small> -->
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mt-0"/>
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-2 col-md-2 p-2 d-none d-lg-block d-xl-block">
+                            <div class="border d-flex justify-content-center pan">
+                                <img class="avatar-full" src="{{response.avatar}}" />
+                            </div>
+                            <div class="border pan mt-2">
+                                <strong class="d-block mt-2" [innerHTML]="response.author"></strong>
+                                <p class="m-0 pt-1 d-none d-md-block d-lg-block d-xl-block">Messages : {{response.nbr_message}}</p>
+                                <p class="m-0 pt-1">Posté le {{response.time}}</p>
+                                <h6 *ngIf="response?.online; else offline" class="text-success">En ligne</h6>
+                                <ng-template #offline>
+                                    <h6  class="text-danger">Hors ligne</h6>
+                                </ng-template>
+                            </div> 
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 border-left position-relative">
+                            <div class="w-100 content-forum" [innerHTML]="response?.content"></div>
+                            <div class="footer-subject">
+                                <hr/>
+                                <div class="signature p-3 mb-2 border">
+                                    <div class="content-signature" [innerHTML]="response?.signature">
+                                       
+                                       
+                                    </div>
+                                </div>
+                                <div *ngIf="response?.editedBy" [innerHTML]="response?.editedBy"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+            <!-- END SUJET -->
+            <div *ngIf="subject?.pagination" class="mt-2 w-100 d-flex justify-content-end" [innerHTML]="subject?.pagination"></div>
+            
+            <div #target></div>
+            <!-- BEGIN IF_IS_CONNECTE -->
+                <!-- BEGIN IF_AFFICHER_REPONDRE -->
+                <form *ngIf="(subject?.hasConnected && subject?.closed != 1) || subject?.isAdmin" action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" id="formulaire" method="POST" novalidate>
+                    <hr />
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-1 mt-4 mb-4">
+                        <h3 class="title"><i class="far fa-arrow-alt-square-right"></i> Répondre au sujet</h3> 
+                        <p>Le flood du forum est interdit & est passible d'une sanction.</p>
+                    </div>
+                    <app-wysiwyg (wysiwyg)="editor($event)"></app-wysiwyg>
+                </form>
+                <!-- END IF_AFFICHER_REPONDRE -->
+            <!-- END IF_IS_CONNECTE -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-1 mt-4 mb-4">
+                <h5 class="title"><i class="far fa-arrow-alt-square-right"></i> Veuillez nous signaler toute violation de nos chartes, comme :</h5>
+                <p>
+                    <span class="d-block">
+                        <strong class="text-warning">Menaces de violences. Nous les prenons très au sérieux et alerterons les autorités compétentes.</strong>
+                        Les messages contenant des informations personnelles sur d’autres joueurs. 
+                        <strong class="text-warning">
+                            Ceci inclut notamment les adresses postales et e-mail, les numéros de téléphone et les photos et vidéos inconvenantes.
+                        </strong>
+                        Harcèlement et discriminations.
+                        <strong class="text-warning">Nous ne tolérons pas ces comportements.</strong>
+                        <a class="text-danger" href="/Reglements/Conduites">Code de Conduite sur les forums </a>.
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+</section>
+            

@@ -1,0 +1,11 @@
+.register {
+    margin-right: unset;
+    margin-left: unset;
+    .image_de_verif {
+        cursor: pointer;
+    }
+
+    ::ng-deep .col-md-6 .alert {
+        margin:0px !important;
+    }
+}

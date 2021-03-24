@@ -1,0 +1,24 @@
+<form [formGroup]="avatarForm" (ngSubmit)="onAvatarSubmit()" enctype="multipart/form-data" class="col-12 bg-white p-2 border mt-2 appAvatar" >
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="avatar"><i class="fas fa-image"></i></span>
+        </div>
+        <div class="custom-file">
+            <input #inputFile type="file" name="avatar"  class="custom-file-input" size="32" name="avatar" (change)="readFile($event)" accept="image/x-png,image/gif,image/jpeg,image/jpg,image/png" id="updateavatar" aria-describedby="avatar" required>
+            <label class="custom-file-label" for="updateavatar">Modifier votre avatar [400X400 Maximum]</label>
+        </div>
+    </div>
+    <app-upload *ngIf="fileEvent" [fileEvent]="fileEvent" (image)="getImage($event)"></app-upload>
+    <app-alert *ngIf="backImg" [type]="backImg?.status" [message]="backImg?.status" ></app-alert>
+    
+    <div *ngIf="account?.avatar" class="border mt-2 mb-2 p-2 bg-input ">
+        <img width="100" class="avatar-img" src="{{account?.avatar}}" />
+    </div>
+    <button type="submit" class="btn btn-success ml-0" [disabled]="avatarDisabledSubmit">
+        <span class="d-flex align-items-center">
+            <i class="fas fa-check mr-2"></i>
+            Valider
+        </span>
+        <div class="back" *ngIf="!avatarDisabledSubmit"></div>
+    </button>
+</form>

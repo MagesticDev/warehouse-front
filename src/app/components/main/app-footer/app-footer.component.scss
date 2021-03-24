@@ -1,0 +1,20 @@
+footer {
+    color: #212529;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .footer {
+        display:flex;
+        align-items: center;
+        & .social {
+            & a {
+                margin-left:5px;
+                & i {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

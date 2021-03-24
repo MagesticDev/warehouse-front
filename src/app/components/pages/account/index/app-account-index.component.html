@@ -1,0 +1,129 @@
+<!-- BEGIN IF_IS_CONNECTE -->
+<app-loading [hasLoading]="hasLoading"></app-loading>
+<section class="account">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0 mt-4 mb-4 bg-span">
+        <div class="title w-100 d-flex justify-content-between align-items-center">
+            <h1 class="w-100 m-0"><i class="fas fa-feather-alt"></i> Mon compte</h1>
+        </div>
+        <div class="row mt-2">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 pl-3 pr-3 pb-3 pt-2">
+                <h3 class="title m-0 mt-1"><i class="fas fa-feather-alt"></i> {{ account?.login }}</h3>
+                <ul class="list-group mb-4 mt-2">
+                    <li class="bg-white list-group-item d-flex justify-content-between align-items-center nav-item">
+                        <a [routerLink]="['/History']"  class="nav-link">
+                            <i class="fas fa-history"></i> Historique
+                        </a>
+                    </li>
+                    <li class="bg-white list-group-item d-flex justify-content-between align-items-center nav-item">
+                        <a [routerLink]="['/Account/Messaging']"  class="nav-link">
+                            <i class="fas fa-envelope"></i> Messagerie
+                            <!-- BEGIN NEW_MESSAGE -->
+                            <span class="text-success"> [0 New(s)]</span>
+                            <!-- END NEW_MESSAGE -->
+                        </a>
+                    </li>
+                    <li class="bg-white list-group-item d-flex justify-content-between align-items-center nav-item">
+                        <a [routerLink]="['/Store/Golds']"  class="nav-link">
+                            <i class="fas fa-treasure-chest"></i> Gold(s) {{account?.golds}}
+                        </a>
+                    </li>
+                    <li class="bg-white list-group-item d-flex justify-content-between align-items-center nav-item">
+                        <div  class="nav-link">
+                            <i class="fas fa-file-contract"></i> Inscription le {{account?.registerDate}}
+                        </div>
+                    </li>
+                    <li class="bg-white list-group-item d-flex justify-content-between align-items-center nav-item">
+                        <div  class="nav-link">
+                            <!-- BEGIN ONLINE -->
+                            <strong *ngIf="account?.hasOnline; else offline" class="text-success"><i class="fas fa-plug"></i> En ligne</strong>
+                            <!-- END ONLINE -->
+                            <!-- BEGIN OFFLINE -->
+                            <ng-template #offline>
+                                <strong class="text-danger"><i class="far fa-power-off"></i> Hors ligne</strong>
+                            </ng-template>
+                            <!-- END OFFLINE -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 pl-3 pr-3 pb-3 pt-2 right">
+                <h3 class="title m-0 mt-1"><i class="fas fa-feather-alt"></i> Vos paramètres</h3>
+                    <app-avatar></app-avatar>
+                    <form [formGroup]="passwordForm" (ngSubmit)="updatePassword(passwordForm)"  method="POST" class="col-12 bg-white p-2 border mt-2">
+                        <label for="pass">Nouveau password MAX[20]</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" ><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" formControlName="updatePass" name="updatePass" maxlength="20" aria-describedby="passwordHelp" class="form-control" id="pass" placeholder="Password" required>
+                            <small id="passwordHelp" class="form-text text-muted w-100">Un email de confirmation vous sera envoyé.</small>
+                        </div>
+                        <ng-container *ngIf="password.updatePass.touched && password.updatePass.invalid">
+                            <app-alert [onCloseButton]="false" *ngIf="password.updatePass.errors.minlength" [type]="'warning'" [message]="'account.myaccount.passwordMin'  | translate"></app-alert>
+                        </ng-container>
+                        <app-alert [onCloseButton]="false" *ngIf="update?.type === 'updatePasswordSendEmail'" [type]="update?.enum" [message]="'account.myaccount.' + update?.type  | translate"></app-alert>
+                        <button type="submit" class="btn btn-success ml-0" [disabled]="!passwordForm.valid">
+                            <span class="d-flex align-items-center">
+                                <i class="fas fa-check mr-2"></i>
+                                Valider
+                            </span>
+                            <div *ngIf="passwordForm.valid" class="back"></div>
+                        </button>
+                    </form>
+                    <form [formGroup]="emailForm" (ngSubmit)="updateEmail(emailForm)" method="POST" class="col-12 bg-white p-2 border mt-2">
+                        <label for="email">Nouvelle adresse email [Actuel : <strong class="text-warning">{{account?.email}}</strong>]</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" ><i class="fas fa-at"></i></span>
+                            </div>
+                            <input type="email" name="email" formControlName="updateEmail" aria-describedby="emailHelp" class="form-control" id="email" placeholder="Email" required>
+                            <small id="emailHelp" class="form-text text-muted w-100">Un email de confirmation vous sera envoyé sur <strong class="text-warning">{{account?.email}}</strong>.</small>
+                        </div>
+                        <ng-container *ngIf="email.updateEmail.touched && email.updateEmail.invalid">
+                            <app-alert [onCloseButton]="false" *ngIf="email.updateEmail.errors" [type]="'warning'" [message]="'account.myaccount.email'  | translate"></app-alert>
+                        </ng-container>
+                        <app-alert [onCloseButton]="false" *ngIf="update?.type === 'updateEmailSendEmail'" [type]="update?.enum" [message]="'account.myaccount.' + update?.type  | translate"></app-alert>
+                        <button type="submit" class="btn btn-success ml-0" name="emailSubmit" [disabled]="!emailForm.valid">
+                            <span class="d-flex align-items-center">
+                                <i class="fas fa-check mr-2"></i>
+                                Valider
+                            </span>
+                            <div *ngIf="emailForm.valid" class="back"></div>
+                        </button>
+                    </form>
+                    <form [formGroup]="signatureForm" (ngSubmit)="updateSignature(signatureForm)"  method="POST" novalidate class="col-12 bg-white p-2 border mt-2">
+                        <div class="form-group" *ngIf="loaded">
+                            <label for="summernote">Modifier votre signature [<strong>Visible sur le forum</strong>]</label>
+                            <app-wysiwyg [text]="account?.signature" (wysiwyg)="signatureChange($event)"></app-wysiwyg>
+                        </div>
+                        <ng-container *ngIf="getSignature.updateSignature.touched && getSignature.updateSignature.invalid">
+                            <app-alert [onCloseButton]="false" *ngIf="getSignature.updateSignature.errors.minlength" [type]="'warning'" [message]="'account.myaccount.passwordMin'  | translate"></app-alert>
+                        </ng-container>
+                        <app-alert [onCloseButton]="false" *ngIf="update?.type === 'updateSignature'" [type]="update?.enum" [message]="'account.myaccount.' + update?.type  | translate"></app-alert>
+                        <button type="submit" class="btn btn-success ml-0" [disabled]="!signatureForm.valid">
+                            <span class="d-flex align-items-center">
+                                <i class="fas fa-check mr-2"></i>
+                                Valider
+                            </span>
+                            <div *ngIf="signatureForm.valid" class="back"></div>
+                        </button>
+                    </form>
+                    <form action="URL" method="POST" class="col-12 bg-white p-2 border mt-2">
+                        <button type="submit" name="deleteAccount" class="btn btn-danger ml-0">
+                            <span class="d-flex align-items-center">
+                                <i class="fal fa-trash-alt mr-1"></i>
+                                Supprimer le compte
+                            </span>
+                            <div class="back"></div>
+                        </button>
+                    </form> 
+                <hr />
+                <h3 class="title m-0 "><i class="fas fa-feather-alt"></i> INFORMATIONS COMPLÉMENTAIRES</h3>
+                <div class="p-3 bg-white border mt-2">
+                    Les informations recueillies font l’objet d’un traitement informatique destiné à fournir et sécuriser l'accès au jeu et au site internet. Conformément à la loi "informatique et libertés" du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en envoyant un ticket via la section contact de notre site internet. Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END IF_IS_CONNECTE -->

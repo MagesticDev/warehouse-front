@@ -1,0 +1,10 @@
+<footer>
+    <div class="footer mt-4">
+        <span>© {{ main.dateStartWebsite }} - {{ year }} {{ main.copyright }}.</span>
+        <span *ngIf="main?.facebook || main?.twitter || main?.youtube" class="ml-2 social">
+            <a *ngIf="main?.facebook" href="{{ main.facebook }}" title="{{ main.facebook_desc }}"><i class="fab fa-facebook-square"></i></a>
+            <a *ngIf="main?.twitter" href="{{ main.twitter }}" title="{{ main.twitter_desc }}"><i class="fab fa-twitter-square"></i></a>
+            <a *ngIf="main?.youtube" href="{{ main.youtube }}" title="{{ main.youtube_desc }}"><i class="fab fa-youtube-square"></i></a>
+        </span>
+    </div>
+</footer>

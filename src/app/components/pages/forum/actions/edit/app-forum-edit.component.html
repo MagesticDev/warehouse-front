@@ -1,0 +1,31 @@
+<!-- BEGIN IF_IS_CONNECTE -->
+<section class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3 mb-4">
+        <div class="title w-100 d-flex justify-content-between align-items-center flex-wrap pl-4 pr-4 m-0">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <h1 class="w-100 m-0 mr-2"><i class="fas fa-helmet-battle"></i> MODIFIER UNE RÉPONSE</h1>
+                <a (click)="goBack()" class="btn btn-success">Retour</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-2 mb-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-1 mt-2 mb-4 ml-3 mr-3">
+            <h3><i class="far fa-arrow-alt-square-right"></i> Modifier votre réponse</h3> 
+            <p>Ne pas modifier une réponse sur un sujet fermé (passible d'un bannissement de 48 heures).</p>
+        </div>
+        <form *ngIf="content" [formGroup]="editForm" (ngSubmit)="edit(editForm)" id="formulaire" method="POST" novalidate>
+            <app-wysiwyg  [text]="content" (wysiwyg)="editChange($event)"></app-wysiwyg>
+            <ng-container *ngIf="!editForm.valid">
+                <app-alert [onCloseButton]="false" [type]="'warning'" [message]="'Au minimum 5 caractères est requis'"></app-alert>
+            </ng-container>
+            <button type="submit" class="btn btn-success ml-0 mt-3" [disabled]="!editForm.valid">
+                <span class="d-flex align-items-center">
+                    <i class="fas fa-check mr-2"></i>
+                    Valider
+                </span>
+                <div *ngIf="editForm.valid" class="back"></div>
+            </button>
+        </form>
+    </div>
+</section>
+<!-- END IF_IS_CONNECTE -->
