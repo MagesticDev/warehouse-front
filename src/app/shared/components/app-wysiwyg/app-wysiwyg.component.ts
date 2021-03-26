@@ -11,17 +11,6 @@ import { URL_API } from "src/app/core/const/api.constants";
 })
 export class AppWysiwygComponent {
     public editor = ClassicEditor;
-    // public config = {
-    //     placeholder: 'Ecrivez votre message...',
-    //     contentsCss: './app-wysiwyg.component.css',
-    //     language: 'fr',
-    //     colorButton_colors: 'CF5D4E,454545,FFF,DDD,CCEAEE,66AB16',
-    //     toolbar: [
-    //         'heading', '|', 'bold', 'italic', 'fontColor', '|', 'bulletedList', 'numberedList', 'insertTable', '|', 'undo', 'redo'
-    //     ],
-        
-    // }
-
     public config = {
         placeholder: 'Ecrivez votre message...',
         extraPlugins: 'youtube',
