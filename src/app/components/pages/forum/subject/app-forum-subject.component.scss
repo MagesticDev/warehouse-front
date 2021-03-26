@@ -95,6 +95,10 @@
             right:1px;
         }
 
+        & .content-forum > img {
+            max-width:100%;
+        }
+
         & .signature {
             border: 1px solid #21232a !important;
             .content-signature {

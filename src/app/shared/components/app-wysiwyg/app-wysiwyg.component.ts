@@ -2,22 +2,71 @@ import { Component, Injectable, Input, Output, EventEmitter } from "@angular/cor
 import { Observable } from "rxjs";
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { URL_API } from "src/app/core/const/api.constants";
 
 @Component({
     selector: 'app-wysiwyg',
-    templateUrl: './app-wysiwyg.component.html'
+    templateUrl: './app-wysiwyg.component.html',
+    styleUrls: ['./app-wysiwyg.component.scss']
 })
 export class AppWysiwygComponent {
     public editor = ClassicEditor;
+    // public config = {
+    //     placeholder: 'Ecrivez votre message...',
+    //     contentsCss: './app-wysiwyg.component.css',
+    //     language: 'fr',
+    //     colorButton_colors: 'CF5D4E,454545,FFF,DDD,CCEAEE,66AB16',
+    //     toolbar: [
+    //         'heading', '|', 'bold', 'italic', 'fontColor', '|', 'bulletedList', 'numberedList', 'insertTable', '|', 'undo', 'redo'
+    //     ],
+        
+    // }
+
     public config = {
         placeholder: 'Ecrivez votre message...',
-        language: 'fr',
+        extraPlugins: 'youtube',
+        toolbar: {
+          items: [
+            'bold',
+            'italic',
+            'underline',
+            'link',
+            'bulletedList',
+            'numberedList',
+            '|',
+            'indent',
+            'outdent',
+            '|',
+            'imageUpload',
+            'blockQuote',
+            'insertTable',
+            'undo',
+            'redo',
+          ]
+        },
         colorButton_colors: 'CF5D4E,454545,FFF,DDD,CCEAEE,66AB16',
-        toolbar: [
-            'heading', '|', 'bold', 'italic', 'fontColor', '|', 'bulletedList', 'numberedList', 'insertTable', '|', 'undo', 'redo'
-        ],
-        contentsCss: ['./app-wysiwyg.component.css'] 
-    }
+        image: {
+          toolbar: [
+            'imageStyle:full',
+            'imageStyle:side',
+            '|',
+            'imageTextAlternative'
+          ]
+        },
+        table: {
+          contentToolbar: [
+            'tableColumn',
+            'tableRow',
+            'mergeTableCells'
+          ]
+        },
+        //extraPlugins: 'uploadimage',
+        // This value must be kept in sync with the language defined in webpack.config.js.
+        language: 'fr',
+        ckfinder : { uploadUrl : URL_API + '/api/forum/upload'}
+      }; 
+      
+
 
     
     @Input() public text: string;
@@ -27,7 +76,9 @@ export class AppWysiwygComponent {
     }
 
     wysiwygChange({ editor }: ChangeEvent){
-        const EditorData = editor.getData();
-        this.wysiwyg.emit(EditorData);
+        if(editor){
+            const EditorData = editor.getData();
+            this.wysiwyg.emit(EditorData);
+        }
     }
 }

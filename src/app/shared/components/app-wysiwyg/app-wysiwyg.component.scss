@@ -1,0 +1,35 @@
+::ng-deep .ck.ck-toolbar {
+    background: #25272f;
+    border:solid 1px black;
+    border-radius:0px;
+    & .ck.ck-icon, & .ck.ck-icon *, & .ck.ck-button.ck-off {
+        color: #eee;
+        cursor:pointer;
+
+        &:hover{
+            background:#292d37;
+            color:#FFFFFF;
+        }
+    }
+    
+    /* padding: 0 var(--ck-spacing-small);
+    border: 1px solid var(--ck-color-toolbar-border); */
+}
+
+::ng-deep .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, 
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners,
+.ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, 
+.ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {
+    border-radius:unset;
+}
+
+::ng-deep .ck.ck-editor__main>.ck-editor__editable {
+    background:#292d37;
+    color:#eee;
+    border:1px solid #11141d;
+}
+
+::ng-deep .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border:1px solid #11141d;
+}
+
