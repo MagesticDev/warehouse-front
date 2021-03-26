@@ -13,7 +13,6 @@ export class AppWysiwygComponent {
     public editor = ClassicEditor;
     public config = {
         placeholder: 'Ecrivez votre message...',
-        extraPlugins: 'youtube',
         toolbar: {
           items: [
             'bold',
@@ -27,6 +26,7 @@ export class AppWysiwygComponent {
             'outdent',
             '|',
             'imageUpload',
+            'youtube',
             'blockQuote',
             'insertTable',
             'undo',
