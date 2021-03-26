@@ -1,10 +1,32 @@
+$boxchadow: 0px 12px 20px 0px rgba(0, 0, 0, 35%);
 .carousel {
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    background: #25272f;
+    
     margin: 26px auto 40px auto;
-    padding: 24px;
+    padding: 10px;
     position: relative;
     height:450px;
+    box-shadow: $boxchadow;
+
+    position: relative;
+
+    & .btn-custom {
+        background:#25272f;
+    }
+
+    & .reflect {
+        position:absolute;
+        width:100%;
+        height:100%;
+        background: rgb(37, 39, 47, 50%);
+        z-index:10;
+        left:0;
+        top:0;
+    }
+
+    .carousel-control-next, .carousel-control-prev {
+        z-index:10;
+    }
 
     & img {
         height:405px;
@@ -18,54 +40,6 @@
         & p {
             color:#fff;
         }
-        &:before, &:after {
-            content: "";
-            position:absolute;
-            display: block;
-            width: 55px;
-            height: 15px;
-            background: rgba(255,255,200,0.6);
-            -webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
-            -moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.4);
-            border:1px solid rgba(0, 0, 0, 0.5);
-        }
-        &:before {
-            left:-10px;
-            top:5px;
-            -webkit-transform: rotate(-35deg);
-            -moz-transform: rotate(-35deg);
-            transform: rotate(-35deg);
-        }
-        &:after {
-            right:-10px;
-            top:5px;
-            -webkit-transform: rotate(35deg);
-            -moz-transform: rotate(35deg);
-            transform: rotate(35deg);
-        }
-    }
-
-    &:before, &:after {
-        content: "";
-        height: 98%;
-        position: absolute;
-        width: 100%;
-        z-index: -1;
-    }
-    &:before {
-        background: #fafafa;
-        box-shadow: 0 0 8px rgba(0,0,0,0.2);
-        left: -5px;
-        top: 4px;
-        transform: rotate(-2.5deg);
-    }
-    &:after {
-        background: #f6f6f6;
-        box-shadow: 0 0 3px rgba(0,0,0,0.2);
-        right: -3px;
-        top: 1px;
-        transform: rotate(1.4deg);
     }
 }
 
