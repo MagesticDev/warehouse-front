@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   public isLoggedInOk: boolean;
   private refreshLogin;
   public account: IUser;
-  public avatar: String;
+  public accountDetail: IUser;
   public hasAdmin: boolean;
 
   @Output()
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
     if(this.AuthService.getToken() != null){
       this.account = jwt_decode(this.AuthService.getToken())['data'];
-      this.avatar = this.account.avatar;
+      this.accountDetail = this.account;
       this.hasAdmin = this.account.hasAdmin;
       this.isConnected();
       this.refreshLogin = setInterval(() => {
@@ -68,9 +68,9 @@ export class AppComponent implements OnInit {
 
   isConnected() {
     if(this.AuthService.getToken() != null){
-      this.AuthService.getUserProfile(1, this.AuthService.getToken()).subscribe(
+      this.AuthService.getUserProfile(this.accountDetail.id, this.AuthService.getToken()).subscribe(
         success => {
-          this.avatar = this.account.avatar;
+          this.accountDetail = this.account;
           this.isLogged.emit(true);
           this.isLoggedInOk = true;
         }, error => {
@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
 
   public isLoggedIn(value) {
     // this.alertService.success('Success!!', this.options)
-    this.avatar = value.avatar;
+    this.accountDetail = value;
     this.isLoggedInOk = value;
   }
 

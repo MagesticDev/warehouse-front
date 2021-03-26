@@ -14,11 +14,11 @@
                 </div>
                 
                 <div *ngIf="isLoggedIn" class="account">
-                    <img class="avatar" src="{{avatar}}" />
+                    <img class="avatar" src="{{accountDetail?.avatar}}" />
                     <ul class="navbar-nav mr-auto ml-2">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                RoiStee
+                                {{accountDetail?.login}}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <ng-container *ngIf="hasAdmin">

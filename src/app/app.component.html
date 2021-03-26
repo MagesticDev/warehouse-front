@@ -2,7 +2,7 @@
 <div class="wrapper">
     <app-aside *ngIf="main" [main]="main" id="aside"></app-aside>
     <div id="content">
-        <app-header [isLoggedIn]="isLoggedInOk" [hasAdmin]="hasAdmin" [avatar]="avatar" (isLogged)="isLoggedIn($event)"></app-header>
+        <app-header [isLoggedIn]="isLoggedInOk" [hasAdmin]="hasAdmin" [accountDetail]="accountDetail" (isLogged)="isLoggedIn($event)"></app-header>
         <div class="page">
             <app-breadcrumb></app-breadcrumb>
             <alert></alert>

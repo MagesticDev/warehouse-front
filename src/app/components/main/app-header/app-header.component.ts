@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { IUser } from 'src/app/core/modeles/user.modele';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 
@@ -20,7 +21,7 @@ export class AppHeaderComponent implements OnInit {
     @Input()
     public isLoggedIn: boolean;
 
-    @Input() avatar: string;
+    @Input() accountDetail: IUser;
     @Input() hasAdmin: boolean;
 
     constructor(private AuthService: AuthService, private router: Router) {
