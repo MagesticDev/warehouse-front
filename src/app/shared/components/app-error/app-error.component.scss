@@ -1,0 +1,16 @@
+.errors {
+    width:100%;
+    display:flex;
+    justify-content: center;
+    font-size:14px;
+    & .pan {
+        width:90%;
+        background: #25272f;
+        padding: 10px 10px;
+        border:red 1px solid;
+        & .text-white, & .text-danger {
+            padding:5px 0;
+        }
+    }
+
+}

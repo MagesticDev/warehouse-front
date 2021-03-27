@@ -19,6 +19,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppTchatComponent } from './components/app-tchat/app-tchat.component';
 import { LocalizedDatePipe } from './components/date/date.component';
 import localeFr from '@angular/common/locales/fr';
+import { AppErrorComponent } from './components/app-error/app-error.component';
 
 registerLocaleData(localeFr);
 
@@ -29,8 +30,9 @@ const APP_COMPONENTS = [
   AppLoadingComponent,
   AppUploadComponent,
   AppAvatarComponent,
-  AppWysiwygComponent ,
+  AppWysiwygComponent,
   AppTchatComponent,
+  AppErrorComponent,
   LocalizedDatePipe
 ];
 const APP_SHARED = [...APP_COMPONENTS];
