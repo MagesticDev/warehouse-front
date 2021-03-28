@@ -4,10 +4,10 @@
             <div class="d-flex error">
                 <div class="text-danger d-flex align-items-center">
                     <i class="fas fa-exclamation-triangle mr-1"></i>
-                    {{error.type}}
+                    {{error?.type}}
                 </div>
                 <div class="text-white ml-2 ">
-                    {{error.type}} le {{error.date}} dans le fichier {{error.file}} à la ligne {{error.line}} {{error.ip}}
+                    {{error?.type}} le {{error?.date}} dans le fichier {{error?.file}} à la ligne {{error?.line}} {{error?.ip}}  {{error?.message}}
                 </div>
             </div>
         </div>

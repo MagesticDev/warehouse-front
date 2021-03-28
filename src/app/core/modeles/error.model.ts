@@ -3,7 +3,8 @@ export interface IError {
     date?: Date;
     file?: string;
     line?: number;
-    ip?: string
+    ip?: string;
+    message?: string;
 }
 
 export class Error implements IError {
@@ -12,6 +13,7 @@ export class Error implements IError {
         public date?: Date,
         public file?: string,
         public line?: number,
-        public ip?: string
+        public ip?: string,
+        public message?: string
     ) {}
 }
