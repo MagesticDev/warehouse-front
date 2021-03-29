@@ -1,0 +1,21 @@
+<div>
+    <hr/>
+    <h4 (click)="add()">
+        Ajouter une catégories 
+        <i class="fas fa-plus"></i>
+    </h4>
+    <form class='d-flex align-items-center'>
+        <div class="pr-1">
+            <input type="text" class="form-control" placeholder="Nom de la catégorie...">
+        </div>
+        <div class="pl-1 pr-1">
+            <select class="form-control" aria-label="droit">
+                <option value="1">Admin</option>
+                <option value="0" selected>Aucun</option>
+            </select>
+        </div>
+        <div class="pl-1">
+            <button type="submit" class="btn btn-primary m-0">OK</button>
+        </div>
+    </form>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ForumService } from "src/app/core/services/forum.service";
 
@@ -11,11 +11,13 @@ import { ForumService } from "src/app/core/services/forum.service";
 export class AppModalsComponent implements OnInit {
     @Input() public title;
     @Input() public content;
-    constructor(private forumService: ForumService){}
+    @Output() public result = new EventEmitter<any[]>();
+    @Input() editCategorie;
+    constructor(){}
     ngOnInit() {
     } 
 
-    public newOrderList(event){
-        this.forumService.editCategorieForum(event);
+    public newEvent(event){
+        this.result.emit(event);
     }
 }

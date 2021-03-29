@@ -10,6 +10,7 @@ import { ForumService } from 'src/app/core/services/forum.service';
     templateUrl: './app-admin-forum.component.html',
     styleUrls: ['../app-admin.component.scss', './app-admin-forum.component.scss']
 })
+
 export class AdminForumComponent implements OnInit {
     public forumIndex: IIndex;
     public forumCategories: ICategorie[];
@@ -30,5 +31,9 @@ export class AdminForumComponent implements OnInit {
 
     openModalCategorie(){
         
+    }
+
+    drop(event){
+        this.forumService.editCategorieForum(event);
     }
 }

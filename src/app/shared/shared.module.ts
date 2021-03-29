@@ -23,6 +23,7 @@ import { AppErrorComponent } from './components/app-error/app-error.component';
 import { AppModalsComponent } from './components/app-modal/app-modals.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppDragAndDropListComponent } from './components/app-drag-and-drop/app-drag-and-drop-list.component';
+import { AppModalsForumAddcategoriesComponent } from './components/app-modal/forum/add-section/app-modals-forum-add-categories.component';
 
 registerLocaleData(localeFr);
 
@@ -37,6 +38,7 @@ const APP_COMPONENTS = [
   AppTchatComponent,
   AppErrorComponent,
   AppModalsComponent,
+  AppModalsForumAddcategoriesComponent,
   AppDragAndDropListComponent,
   LocalizedDatePipe
 ];
