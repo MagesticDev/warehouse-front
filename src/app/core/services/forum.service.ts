@@ -18,6 +18,10 @@ export class ForumService {
         return this.http.get<IIndex>(`${this.resourceUrl}/index`); 
     }
 
+    public editCategorieForum(orderCategorie: ICategorie) {
+        return this.http.put<ICategorie>(`${this.resourceUrl}/index`, orderCategorie).subscribe();
+    }
+
     public getSection(id: number): Observable<IForum> {
         return this.http.get<IForum>(`${this.resourceUrl}/section/${id}`); 
     }

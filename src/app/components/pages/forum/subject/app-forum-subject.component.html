@@ -38,15 +38,15 @@
                 <!-- BEGIN PASTILLE -->
                 <div class="mt-1">
                     <!-- BEGIN FERME -->
-                    <div *ngIf="subject?.closed == 1" class="d-block">
-                        <span class="text-danger bg-light">
+                    <div *ngIf="subject?.closed == 1" class="d-block subject-status">
+                        <span class="text-danger">
                             <i class="fas fa-square-full"></i> Ce sujet à été marqué comme fermer
                         </span>
                     </div>
                     <!-- END FERME -->
                     <!-- BEGIN REGLE -->
-                    <div *ngIf="subject?.rule == 1" class="d-block">
-                        <span  class="text-success bg-light">
+                    <div *ngIf="subject?.rule == 1" class="d-block subject-status">
+                        <span  class="text-success">
                             <i class="fas fa-square-full"></i> Ce sujet à été marqué comme résolu
                         </span>
                     </div>

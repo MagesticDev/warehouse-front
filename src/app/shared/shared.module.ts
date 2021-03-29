@@ -20,6 +20,9 @@ import { AppTchatComponent } from './components/app-tchat/app-tchat.component';
 import { LocalizedDatePipe } from './components/date/date.component';
 import localeFr from '@angular/common/locales/fr';
 import { AppErrorComponent } from './components/app-error/app-error.component';
+import { AppModalsComponent } from './components/app-modal/app-modals.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AppDragAndDropListComponent } from './components/app-drag-and-drop/app-drag-and-drop-list.component';
 
 registerLocaleData(localeFr);
 
@@ -33,6 +36,8 @@ const APP_COMPONENTS = [
   AppWysiwygComponent,
   AppTchatComponent,
   AppErrorComponent,
+  AppModalsComponent,
+  AppDragAndDropListComponent,
   LocalizedDatePipe
 ];
 const APP_SHARED = [...APP_COMPONENTS];
@@ -49,6 +54,7 @@ const APP_SHARED = [...APP_COMPONENTS];
     HttpClientModule,
     NgxLoadingModule,
     CKEditorModule,
+    DragDropModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

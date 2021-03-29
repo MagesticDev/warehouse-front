@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { AdminComponent } from './app-admin.component';
 import { AdminIndexComponent } from './index/app-admin-index.component';
+import { AdminForumComponent } from './forum/app-admin-forum.component';
 
 // import { AuthGuardService } from 'src/app/core/services/authGuard.service';
 
@@ -41,7 +42,7 @@ import { AdminIndexComponent } from './index/app-admin-index.component';
   providers: [
     // AuthGuardService
   ],
-  declarations: [AdminComponent, AdminIndexComponent],
+  declarations: [AdminComponent, AdminIndexComponent, AdminForumComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AdminModule {} 

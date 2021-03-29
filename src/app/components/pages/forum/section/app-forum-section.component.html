@@ -62,12 +62,12 @@
                                 <div>
                                     <!-- BEGIN FERME -->
                                     
-                                    <span *ngIf="subject?.closed == 1" class="text-danger border">
+                                    <span *ngIf="subject?.closed == 1" class="text-danger">
                                         <i class="fas fa-square-full"></i>
                                     </span>
                                     <!-- END FERME -->
                                     <!-- BEGIN REGLE -->
-                                    <span *ngIf="subject?.rule == 1" class="text-success border">
+                                    <span *ngIf="subject?.rule == 1" class="text-success">
                                         <i class="fas fa-square-full"></i>
                                     </span>
                                     <!-- END REGLE -->
@@ -93,9 +93,9 @@
             
             <!-- END SUJETS -->
             </div>
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="w-100 d-flex justify-content-end mb-2">
-                    PAGINATION
+            <div *ngIf="section?.pagination" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pr-0">
+                <div class="w-100 d-flex justify-content-end mb-2 mt-2" [innerHTML]="section?.pagination">
+                    
                 </div>
             </div>
 

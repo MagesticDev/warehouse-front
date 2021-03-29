@@ -75,7 +75,7 @@
           "defaults": { 
               "serve": { 
                 "port": 4200,
-                "host": "magestic.test"
+                "host": "warehouse-back.test"
               }
           },
           "builder": "@angular-devkit/build-angular:dev-server",

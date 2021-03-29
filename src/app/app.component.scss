@@ -31,6 +31,28 @@
     z-index: 1000;
 }
 
+::ng-deep .modal-content {
+    background-color: #2b2f39;
+    border: 1px solid #11141d; 
+    color: #ffffff;
+    & .modal-header {
+        background: #25272f;
+        background-image: url("../assets/images/style/always-grey.png");
+        border-bottom: solid 1px #121621;
+    }
+
+    & .modal-footer {
+        background: #25272f;
+        border-top: solid 1px #121621;
+    }
+}
+
+::ng-deep .list-group-item {
+    background-color: #25272f;
+    border: 1px solid #121621;
+    margin-top:1px;
+}
+
 .footer {
     left:0;
     bottom:0;

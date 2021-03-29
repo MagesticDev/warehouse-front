@@ -16,6 +16,7 @@ export interface IForum {
     isAdmin?: boolean;
     right_write?: boolean;
     hasConnected?: boolean;
+    pagination?: string;
 }
 
 
@@ -36,5 +37,6 @@ export class Forum implements IForum {
         public isAdmin?: boolean,
         public right_write?: boolean,
         public hasConnected?: boolean,
+        public pagination?: string
     ){}
 }
