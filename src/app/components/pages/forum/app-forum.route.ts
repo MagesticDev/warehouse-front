@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/shared/components/guard/auth.guard';
 import { ForumEditComponent } from './actions/edit/app-forum-edit.component';
+import { ForumNewComponent } from './actions/new/app-forum-new.component';
 import { ForumComponent } from './app-forum.component';
 import { ForumIndexComponent } from './index/app-forum-index.component';
 import { ForumSectionComponent } from './section/app-forum-section.component';
@@ -13,7 +14,7 @@ export const FORUM_ROUTE: Routes = [
   {
     path: '',
     component: ForumComponent,
-    data: { breadcrumbs: '' },
+    data: { breadcrumbs: '' }, 
     children: [
       { 
         path: 'Forum', 
@@ -23,6 +24,11 @@ export const FORUM_ROUTE: Routes = [
         path: 'Forum/:name/:id', 
         component: ForumSectionComponent, 
         data: { breadcrumbItem: { key: 'Section', labelName: 'Section' } }
+      }, {
+        path: 'Forum/:name/:id/new', 
+        component: ForumNewComponent, 
+        canActivate: [AuthGuard], 
+        data: { breadcrumbItem: { key: 'Sujet', labelName: 'Nouveau' } }
       }, {
         path: 'Forum/:name/:id/:name/:idSubject', 
         component: ForumSubjectComponent, 

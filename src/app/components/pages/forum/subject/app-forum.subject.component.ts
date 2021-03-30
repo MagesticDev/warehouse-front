@@ -1,4 +1,5 @@
 import { Component, OnInit, Injectable, ChangeDetectionStrategy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IResponses } from 'src/app/core/modeles/forum/reponses.model';
 import { ISubject } from 'src/app/core/modeles/forum/subject.model';
@@ -15,23 +16,37 @@ export class ForumSubjectComponent implements OnInit {
     public subject: ISubject;
     public responses: IResponses[];
     public hasLoading = true;
+    public editForm: FormGroup;
+    public idSubject;
     
 
-    constructor(private forumService: ForumService, private route: ActivatedRoute){}  
+    constructor(private forumService: ForumService, private route: ActivatedRoute, private fb: FormBuilder){}  
     ngOnInit() {
-        const idSubject = this.route.snapshot.paramMap.get('idSubject');
-        if(idSubject != null){
-            this.forumService.getSubject(Number(idSubject)).subscribe(subject => {
+        this.idSubject = this.route.snapshot.paramMap.get('idSubject');
+        if(this.idSubject!= null){
+            this.forumService.getSubject(Number(this.idSubject)).subscribe(subject => {
                 this.subject = subject;
                 this.responses = subject.responses;
                 this.hasLoading = false;
+
+                this.editForm = this.fb.group({
+                    text: [null, [Validators.required, Validators.minLength(10)]],
+                });
+                console.log(this.subject.id);
             });
         }
     }
 
-    editor(event){
-        console.log(event);
+    edit(editForm){
+        this.forumService.response(this.idSubject , editForm.value.text, this.subject.closed, this.subject.id).subscribe(result => {
+            console.log(result);
+        });
     }
+
+    editChange(event){
+        this.editForm.get('text').setValue(event);
+    }
+
 
     scrollToElement($element): void {
         $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});

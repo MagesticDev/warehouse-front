@@ -3,7 +3,7 @@
     <div class="title w-100 d-flex justify-content-between align-items-center">
         <h1 class="w-100 m-0">
             <i class="fas fa-feather-alt"></i> 
-            {{subject?.title}}
+            <span [innerHTML]="subject?.title_topics"></span>
         </h1>
         <!-- BEGIN REPONDRE -->
         <div  (click)="scrollToElement(target)" *ngIf="subject?.hasConnected && subject?.closed != 1" class="btn btn-success">
@@ -30,8 +30,8 @@
                         <i class="fas fa-comment"></i>
                     </span>
                     <!-- END NORMAL -->
-                    <span class="description">
-                        {{subject?.description}}
+                    <span class="description" [innerHTML]="subject?.description">
+                       
                     </span>
                 </h2>
                 <hr />
@@ -213,13 +213,20 @@
             <div #target></div>
             <!-- BEGIN IF_IS_CONNECTE -->
                 <!-- BEGIN IF_AFFICHER_REPONDRE -->
-                <form *ngIf="(subject?.hasConnected && subject?.closed != 1) || subject?.isAdmin" action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" id="formulaire" method="POST" novalidate>
+                <form *ngIf="(subject?.hasConnected && subject?.closed != 1) || subject?.isAdmin"  [formGroup]="editForm" (ngSubmit)="edit(editForm)"  action="/Forum/section-URL_ID_SECTION-ID_SECTION/sujet-URL_ID_SUJET-ID_SUJET" id="formulaire" method="POST" novalidate>
                     <hr />
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-1 mt-4 mb-4">
                         <h3 class="title"><i class="far fa-arrow-alt-square-right"></i> Répondre au sujet</h3> 
                         <p>Le flood du forum est interdit & est passible d'une sanction.</p>
                     </div>
-                    <app-wysiwyg (wysiwyg)="editor($event)"></app-wysiwyg>
+                    <app-wysiwyg (wysiwyg)="editChange($event)"></app-wysiwyg>
+                    <button type="submit" class="btn btn-success ml-0 mt-3" [disabled]="!editForm.valid">
+                        <span class="d-flex align-items-center">
+                            <i class="fas fa-check mr-2"></i>
+                            Envoyer la réponse
+                        </span>
+                        <div *ngIf="editForm.valid" class="back"></div>
+                    </button>
                 </form>
                 <!-- END IF_AFFICHER_REPONDRE -->
             <!-- END IF_IS_CONNECTE -->

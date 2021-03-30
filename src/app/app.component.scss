@@ -31,6 +31,40 @@
     z-index: 1000;
 }
 
+::ng-deep .btn {
+    color:#eee !important;
+}
+
+::ng-deep .input-group-text {
+    background:#282c35;
+    border: 1px solid #11141d; 
+    color:#eee;
+}
+
+::ng-deep .form-group {
+    color:#eee;
+    background:unset;
+}
+
+::ng-deep fieldset {
+    border: 1px solid #11141d; 
+    padding: 15px;
+    position: relative;
+    margin:20px 0;
+
+    & .title {
+        position: absolute;
+        top:-13px;
+        left:20px;
+        font-size:14px;
+        padding:0 10px;
+        background:#2b2f39;
+        & i {
+            color:#eee;
+        }
+    }
+}
+
 ::ng-deep .modal-content {
     background-color: #2b2f39;
     border: 1px solid #11141d; 

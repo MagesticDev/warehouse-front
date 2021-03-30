@@ -6,26 +6,52 @@
     </h4>
     <form  [formGroup]="categorieForm" (ngSubmit)="updateCategorie(categorieForm)"  method="POST">
         <div formArrayName="items"  *ngFor="let item of categorieForm.get('items')['controls']; let i = index">
-            <div [formGroupName]="i">
-                <div class='d-flex align-items-center mt-1'>
-                    <div class="pr-1">
-                        <input formControlName="addNameCategorie" name="addNameCategorie" type="text" class="form-control" placeholder="Nom de la catégorie...">
-                    </div>
-                    <div class="pl-1 pr-1">
-                        <select class="form-control" formControlName="addRightCategorie"  name="addRightCategorie" aria-label="droit">
-                            <option value="1">Admin</option>
-                            <option value="null">Aucun</option>
-                        </select>
-                    </div>
-                    <div>
-                        <i (click)="removeItem(i)" class="fas fa-trash"></i>
-                    </div>
+            <fieldset>
+                <div class="title">
+                    Catégorie {{i + 1}}
                 </div>
-                <textarea class="w-100 mt-1" placeholder="Description de la catégorie" formControlName="addDescriptionCategorie"  name="addDescriptionCategorie" >
+                <div [formGroupName]="i">
+                    <div class='d-flex align-items-center mt-1'>
+                        <div class="pr-1">
+                            <input formControlName="addNameCategorie" name="addNameCategorie" type="text" class="form-control" placeholder="Nom de la catégorie...">
+                        </div>
+                        <div class="pl-1 pr-1">
+                            <select class="form-control" formControlName="addRightCategorie"  name="addRightCategorie" aria-label="droit">
+                                <option value="1">Admin</option>
+                                <option value="null">Aucun</option>
+                            </select>
+                        </div>
+                        <div>
+                            <i (click)="removeItem(i)" class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                    <textarea class="w-100 mt-1" placeholder="Description de la catégorie" formControlName="addDescriptionCategorie"  name="addDescriptionCategorie" >
 
-                </textarea>
-                
-            </div>
+                    </textarea>
+                    <hr/>
+                    <fieldset>
+                        <div class="title d-flex align-items-center">
+                            Ajouter un ou plusieur forum(s) (requis)  
+                            <i (click)="addNextForum(i)" class="fas fa-plus ml-3"></i>
+                        </div>
+                        <div formArrayName="forums" *ngFor="let forum of categorieForm.get('items')['controls'][i].get('forums')['controls']; let indexForum = index">
+                            <div [formGroupName]="indexForum">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <input formControlName="titleForum" name="titleForum" type="text" class="form-control" placeholder="Titre du forum">
+                                    </div>
+                                    <div *ngIf="indexForum !== 0">
+                                        <i (click)="removeForum(i, indexForum)" class="fas fa-trash"></i>
+                                    </div>
+                                </div>
+                                <textarea class="w-100 mt-1 mb-2" placeholder="Description du forum" formControlName="descriptionForum"  name="descriptionForum" >
+            
+                                </textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
         </div>
         <button type="submit" class="btn btn-success mt-2 m-0" [disabled]="categorieForm.invalid">Enregistrer</button>
     </form>

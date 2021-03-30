@@ -14,6 +14,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { SharedModule } from 'src/app/shared';
 import { ForumEditComponent } from './actions/edit/app-forum-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ForumNewComponent } from './actions/new/app-forum-new.component';
 
 @NgModule({
   exports: [
@@ -29,7 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgxLoadingModule, 
     SharedModule
   ],
-  declarations: [AppBreadcrumbComponent, ForumComponent, ForumIndexComponent, ForumSectionComponent, ForumSubjectComponent, ForumEditComponent],
+  declarations: [AppBreadcrumbComponent, ForumComponent, ForumIndexComponent, ForumSectionComponent, ForumSubjectComponent, ForumNewComponent, ForumEditComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class ForumModule {} 

@@ -40,9 +40,21 @@ export class ForumService {
         return this.http.get<IResponses>(`${this.resourceUrl}/edit/${idTopic}/${idResponse}`); 
     }
 
+    public newSubject(id: number, title: string, description: string, text: string, isRighted, isClosed, type){
+        return this.http.post<any>(`${this.resourceUrl}/new`, {id, title, description, text, isRighted, isClosed, type}).pipe(map(newSubject => {
+            return newSubject;
+        }));
+    }
+
     public editChange(idTopic: number, idResponse: number, text: string) {
         return this.http.post(`${this.resourceUrl}/edit/${idTopic}/${idResponse}`, {text}).pipe(map(edited => {
             return edited;
         })); 
+    }
+
+    public response(idSubject: number , text: string, closed: number, id_forum: number){
+        return this.http.post<any>(`${this.resourceUrl}/response`, {idSubject, text, closed, id_forum}).pipe(map(edited => {
+            return edited;
+        }));
     }
 }

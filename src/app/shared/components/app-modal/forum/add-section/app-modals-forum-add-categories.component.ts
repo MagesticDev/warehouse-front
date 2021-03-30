@@ -19,6 +19,8 @@ export class AppModalsForumAddcategoriesComponent implements OnInit {
         this.categorieForm = this.fb.group({
             items: this.fb.array([this.createItem()])
         })
+
+        //  categorieForm.get('items')['controls'][i]['controls'].forums['controls'];
     }
 
     ngOnInit() {
@@ -31,13 +33,24 @@ export class AppModalsForumAddcategoriesComponent implements OnInit {
             addNameCategorie: ['', [Validators.required, Validators.minLength(5)]],
             addRightCategorie: ['null'],
             addDescriptionCategorie: ['', [Validators.required, Validators.minLength(5)]],
-            addPositionCategorie: [this.countCategories]
+            addPositionCategorie: [this.countCategories],
+            forums: this.fb.array([this.createForum()])
         });
+    }
+
+    createForum(){
+        return this.fb.group({
+            titleForum: ['', [Validators.required, Validators.minLength(5)]],
+            descriptionForum: ['', [Validators.required, Validators.minLength(5)]]
+        })
     }
 
     addNext() {
         (this.categorieForm.controls['items'] as FormArray).push(this.createItem())
-        
+    }
+
+    addNextForum(i){
+        (this.categorieForm.controls['items']['controls'][i]['controls']['forums'] as FormArray).push(this.createForum())
     }
 
     updateCategorie(event){
@@ -50,8 +63,14 @@ export class AppModalsForumAddcategoriesComponent implements OnInit {
         this.categorieForm.value.items.splice(-1, 1);
     }
 
+
     removeItem(i: number) {
         const control = <FormArray>this.categorieForm.controls['items'];
         control.removeAt(i);
-     }
+    }
+
+    removeForum(categorieId, forumId){
+        const control = <FormArray>this.categorieForm.controls['items']['controls'][categorieId]['controls']['forums'];
+        control.removeAt(forumId);
+    }
 }

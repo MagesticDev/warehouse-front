@@ -1,9 +1,9 @@
 <app-loading [hasLoading]="hasLoading"></app-loading>
 <section class="forum">
     <div class="title w-100 d-flex justify-content-between align-items-center">
-        <h1 class="w-100 m-0"><i class="fas fa-feather-alt"></i> {{section?.title}}</h1> 
+        <h1 class="w-100 m-0"><i class="fas fa-feather-alt" [innerHTML]="section?.title"></i></h1> 
         <!-- BEGIN NOUVEAU -->
-        <div *ngIf="section?.hasConnected && (section?.right_write || section?.isAdmin)" href="URL/Nouveau" class="btn btn-success">
+        <div *ngIf="section?.hasConnected && (section?.right_write || section?.isAdmin)" [routerLink]="['/Forum', 'section-' + section?.url, section?.id, 'new']" href="URL/Nouveau" class="btn btn-success">
             <span>Nouveau sujet </span><div class="back"></div>
         </div>
         <!-- END NOUVEAU -->
@@ -14,7 +14,7 @@
                 <i class="far fa-arrow-alt-square-right"></i> 
                 Lire les sujets
             </h5>
-            <p>{{section?.description}}</p>
+            <p [innerHTML]="section?.description"></p>
             <!-- BEGIN AUCUN_SUJET -->
             <div *ngIf="!subjects" class="bg-custom border row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

@@ -37,7 +37,7 @@ export interface ISubject {
     author_text?: string;
     closed?: number;
     description?: string;
-    id_forum?: number;
+    id?: number;
     topic_id?: number;
     last_author?: string;
     last_message?: string;
@@ -46,7 +46,7 @@ export interface ISubject {
     rule?: number;
     time?: number;
     time_new?: number;
-    title?: string;
+    title_topics?: string;
     type?: number;
     url?: string;
     isView?: boolean;
