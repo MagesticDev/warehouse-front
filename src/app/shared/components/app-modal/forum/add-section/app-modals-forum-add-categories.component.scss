@@ -1,0 +1,15 @@
+.add {
+    & .fas {
+        background:#25272f;
+        border:1px #1b1e27 solid;
+        padding:5px;
+        transition: 0.3s;
+        cursor: pointer;
+        margin-left:10px;
+        &:hover {
+            background:#1b1e27;
+            border:1px #25272f solid;
+        }
+    }
+    
+}

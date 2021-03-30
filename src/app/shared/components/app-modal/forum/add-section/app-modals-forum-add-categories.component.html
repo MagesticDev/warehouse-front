@@ -1,21 +1,32 @@
-<div>
+<div class="add">
     <hr/>
-    <h4 (click)="add()">
-        Ajouter une catégories 
-        <i class="fas fa-plus"></i>
+    <h4>
+        Ajouter une ou plusieur catégorie(s) 
+        <i (click)="addNext()" class="fas fa-plus"></i>
     </h4>
-    <form class='d-flex align-items-center'>
-        <div class="pr-1">
-            <input type="text" class="form-control" placeholder="Nom de la catégorie...">
+    <form  [formGroup]="categorieForm" (ngSubmit)="updateCategorie(categorieForm)"  method="POST">
+        <div formArrayName="items"  *ngFor="let item of categorieForm.get('items')['controls']; let i = index">
+            <div [formGroupName]="i">
+                <div class='d-flex align-items-center mt-1'>
+                    <div class="pr-1">
+                        <input formControlName="addNameCategorie" name="addNameCategorie" type="text" class="form-control" placeholder="Nom de la catégorie...">
+                    </div>
+                    <div class="pl-1 pr-1">
+                        <select class="form-control" formControlName="addRightCategorie"  name="addRightCategorie" aria-label="droit">
+                            <option value="1">Admin</option>
+                            <option value="null">Aucun</option>
+                        </select>
+                    </div>
+                    <div>
+                        <i (click)="removeItem(i)" class="fas fa-trash"></i>
+                    </div>
+                </div>
+                <textarea class="w-100 mt-1" placeholder="Description de la catégorie" formControlName="addDescriptionCategorie"  name="addDescriptionCategorie" >
+
+                </textarea>
+                
+            </div>
         </div>
-        <div class="pl-1 pr-1">
-            <select class="form-control" aria-label="droit">
-                <option value="1">Admin</option>
-                <option value="0" selected>Aucun</option>
-            </select>
-        </div>
-        <div class="pl-1">
-            <button type="submit" class="btn btn-primary m-0">OK</button>
-        </div>
+        <button type="submit" class="btn btn-success mt-2 m-0" [disabled]="categorieForm.invalid">Enregistrer</button>
     </form>
 </div>

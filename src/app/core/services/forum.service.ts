@@ -22,6 +22,12 @@ export class ForumService {
         return this.http.put<ICategorie>(`${this.resourceUrl}/index`, orderCategorie).subscribe();
     }
 
+    public addCategoriesForum(addCategorie: any){
+        return this.http.post(`${this.resourceUrl}/index`, {addCategorie}).pipe(map(add => {
+            return add;
+        })); 
+    }
+
     public getSection(id: number): Observable<IForum> {
         return this.http.get<IForum>(`${this.resourceUrl}/section/${id}`); 
     }

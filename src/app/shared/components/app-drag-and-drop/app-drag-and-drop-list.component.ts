@@ -9,8 +9,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 export class AppDragAndDropListComponent implements OnInit {
     @Input() public items;
     @Output() public result = new EventEmitter<any[]>();
+    @Output() public countItems = new EventEmitter<Number>();
     constructor(){}
     ngOnInit() {
+        this.totalCounts();
     }
 
     drop(event: CdkDragDrop<any[]>, lists) {
@@ -26,6 +28,14 @@ export class AppDragAndDropListComponent implements OnInit {
         }
         
         this.result.emit(lists);
+    }
+
+    totalCounts() {
+        let total = 0;
+        this.items.forEach((d) => {
+          total += 1;
+        });
+        this.countItems.emit(total);
     }
     
 }

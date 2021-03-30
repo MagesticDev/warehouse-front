@@ -41,7 +41,4 @@
         </div>
     </div>
 </section>
-<div #add>
-    toto
-</div>
-<app-modals *ngIf="forumCategories" [title]="titleModal" [editCategorie]="true" (result)="drop($event)" [content]="forumCategories"></app-modals>
+<app-modals *ngIf="forumCategories" [title]="titleModal" (newListCategorie)="newListCategorie($event)" [editCategorie]="true" (result)="drop($event)" [content]="forumCategories"></app-modals>

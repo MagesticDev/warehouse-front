@@ -9,11 +9,11 @@
             </div>
             <form method="POST">
                 <div class="modal-body" cdkDragHandle>
-                    <app-drag-and-drop-list [items]="content" (result)="newEvent($event)"></app-drag-and-drop-list>
-                    <app-modals-forum-add-categories *ngIf="editCategorie"></app-modals-forum-add-categories>
+                    <app-drag-and-drop-list [items]="content" (result)="newEvent($event)" (countItems)="countItems($event)"></app-drag-and-drop-list>
+                    <app-modals-forum-add-categories [countCategories]="count" (resultCategorie)="resultCategorie($event)" *ngIf="editCategorie && count"></app-modals-forum-add-categories>
                 </div>
                 <div class="modal-footer">
-                    
+                    <div class="btn btn-success">Fermer</div>
                 </div>
             </form>
         </div>

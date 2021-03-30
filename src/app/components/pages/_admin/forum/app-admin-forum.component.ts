@@ -36,4 +36,9 @@ export class AdminForumComponent implements OnInit {
     drop(event){
         this.forumService.editCategorieForum(event);
     }
+
+    newListCategorie(event){
+        console.log(this.forumCategories, event.categories)
+        this.forumCategories = event.categories;
+    }
 }
