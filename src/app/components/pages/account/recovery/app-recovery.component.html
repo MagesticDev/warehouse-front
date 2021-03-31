@@ -7,7 +7,7 @@
         </div>
         <div class="row bg-span">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-4 mb-4">
-                <form [formGroup]="recoveryForm" (ngSubmit)="recovery(recoveryForm)" class="bg-light border pt-4 pb-4" method="POST">
+                <form [formGroup]="recoveryForm" (ngSubmit)="recovery(recoveryForm)" class="bg-warehouse border pt-4 pb-4" method="POST">
                     <div *ngIf="!hasSendMail; else newPassword">
                         <!-- BEGIN RESTORE_EMAIL -->
                         <div class="form-group row">
@@ -115,7 +115,7 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-4 mb-4">
                 <h5><i class="far fa-arrow-alt-square-right"></i> Informations complémentaires</h5>
                 <p>Traitement des informations via ce formulaire.</p>
-                <p class="bg-light p-4 border">Les informations recueillies font l’objet d’un traitement informatique destiné à fournir et sécuriser l'accès au jeu et au site internet. Conformément à la loi "informatique et libertés" du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en envoyant un ticket via la section contact de notre site internet. Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant.</p>
+                <p class="bg-warehouse p-4 border">Les informations recueillies font l’objet d’un traitement informatique destiné à fournir et sécuriser l'accès au jeu et au site internet. Conformément à la loi "informatique et libertés" du 6 janvier 1978 modifiée en 2004, vous bénéficiez d’un droit d’accès et de rectification aux informations qui vous concernent, que vous pouvez exercer en envoyant un ticket via la section contact de notre site internet. Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant.</p>
                 <h5><i class="far fa-arrow-alt-square-right"></i> Liens utiles</h5>
                 <ul class="list-group mb-4 nav">
                     <li class="list-group-item d-flex justify-content-between align-items-center nav-item"><a class="nav-link" href="/Reglements"><i class="fas fa-arrow-square-right"></i> Règlements</a></li>
